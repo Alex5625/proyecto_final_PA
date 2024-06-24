@@ -1,8 +1,6 @@
-from comunidad import Comunidad
-
 
 class Enfermedad(Comunidad):
-	def __init__(self,apellido,edad,cantidad,promedio,probabilidad,infeccion,numero)
+	def __init__(self,apellido,edad,cantidad,promedio,probabilidad,infeccion,numero):
 		super().__init__(cantidad,promedio,probabilidad)
 
 
