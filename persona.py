@@ -3,16 +3,16 @@
 
 class Persona:
 
-	def __init__(self,apellido,nombre):
+	def __init__(self,nombre,apellido,id_familia):
 
-		self.id = 	apellido
 		self.nombre = nombre
-		
+		self.id = 	apellido
+		self.id_familia = id_familia
 		#si __estado = True esta vivo, si = False esta muerto
 		self.__enfermedad = False
 		
 		#si __estado = True esta vivo, si = False esta muerto
-		self.__estado = True
+		self.__estado = True 
 		
 
 

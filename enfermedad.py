@@ -1,7 +1,7 @@
 
 class Enfermedad(Comunidad):
-	def __init__(self,apellido,edad,cantidad,promedio,probabilidad,infeccion,numero):
-		super().__init__(cantidad,promedio,probabilidad)
+	def __init__(self,infeccion,numero):
+		
 
 
 		#Cual es la probabilidad que se contagie
@@ -12,7 +12,6 @@ class Enfermedad(Comunidad):
 
 		#Contara la cantidad de pasos que se estan dando
 		self.__num_pasos = int
-
 
 
 	#Van pasando los dias
