@@ -8,7 +8,7 @@ class Persona:
 		self.nombre = nombre
 		self.id = 	apellido
 		self.id_familia = id_familia
-		#si __estado = True esta vivo, si = False esta muerto
+		#si __estado = True esta contagiado, si = False esta libre
 		self.__enfermedad = False
 		
 		#si __estado = True esta vivo, si = False esta muerto

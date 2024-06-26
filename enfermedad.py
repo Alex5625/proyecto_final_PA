@@ -2,8 +2,6 @@
 class Enfermedad(Comunidad):
 	def __init__(self,infeccion,numero):
 		
-
-
 		#Cual es la probabilidad que se contagie
 		self.__prob_infeccion = infeccion
 

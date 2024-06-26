@@ -3,10 +3,10 @@ from crear_listas import NombresApellidos
 from enfermedad import Enfermedad
 
 
-
+		
 class Comunidad(Persona) :
 	#La cantidad de personas sera determinada con un get del largo de la lista 
-	def __init__(self,cantidad,promedio,probabilidad,infectados):
+	def __init__(self,cantidad,promedio,probabilidad,infectados,enfermedad):
 
 		#cantidad maxima de habitantes o personas dentro de la comunidad
 		self.__largo_comunidad = cantidad
@@ -16,7 +16,7 @@ class Comunidad(Persona) :
 		
 		#cantidad inicial de infectados 
 		self.__num_infectados = infectados  
-
+		self.__enfermedad = enfermedad
 		self.__comunidad = self.set_comunidad()
 	
 
