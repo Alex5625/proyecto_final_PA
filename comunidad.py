@@ -24,6 +24,7 @@ class Comunidad(Persona) :
 	def numero_integrantes(self,media desviacion_estandar):
 
 		#la cantidad de integrantes de cada familia tiende a distribuir normal
+		#USAR NUMPY (opcional)
 		return round(random.gauss(media, desviacion_estandar))
 
 
@@ -32,10 +33,14 @@ class Comunidad(Persona) :
 		nombre_apellido_manager = NombresApellidos("nombres_apellidos.csv")
 		self.lista = []
 		id_familia = 0
-		media = 3.1
+
+		media = self.__prom_conexion_fisica
 		desviacion_estandar = 1.2
 		id_persona = 0
-
+		
+		#Combinatoria es para mezclar a la gente y no este ordenada
+		#repartija aleatoria en un grupo de datos (numpy tiene algo con combinatoria) 
+		#asi como podemos tener familias podemos tener amigos
 
 		while id_persona != self.__largo_comunidad:
 
@@ -52,11 +57,25 @@ class Comunidad(Persona) :
 					break
 
 			id_familia += 1
-
-
-		arreglo_comunidad_hecha = self.agregar_infectados_iniciales(self.__largo_comunidad,self.__num_infectados, lista)
 		#self.get_lista()
 
+		#Genera las interconexiones con la demas gente
+		arreglo_comunidad_conexiones = conexiones_interpersonales(self.__prom_conexion_fisica,self.lista)
+
+		#Se integran los ciudadanos inicialmente contagiados a la comunidad 
+		arreglo_comunidad_w_infectados = self.agregar_infectados_iniciales(self.__largo_comunidad,self.__num_infectados, lista)
+
+	def conexiones_interpersonales(self,conexion_fisica, comunidad):
+
+		largo_conexiones = conexion_fisica
+
+		for persona in comunidad:
+			#Te genera la lista de internconexiones para una persona en comun
+			subconjunto = np.random.choice(comunidad, size = largo_conexiones)
+
+			personas.conexiones = subconjunto
+
+			return comunidad
 
 	def sumar_infectados_inicio(self, num_ciudadanos, num_infectados,arreglo_comunidad):
 		contador = 0
