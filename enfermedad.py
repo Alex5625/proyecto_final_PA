@@ -1,6 +1,6 @@
 
-class Enfermedad(Comunidad):
-	def __init__(self,infeccion,numero):
+class Enfermedad():
+	def __init__(self,infeccion,numero, nombre):
 		
 		#Cual es la probabilidad que se contagie
 		self.__prob_infeccion = infeccion
@@ -11,6 +11,7 @@ class Enfermedad(Comunidad):
 		#Contara la cantidad de pasos que se estan dando
 		self.__num_pasos = int
 
+		self.nombre = nombre
 
 	#Van pasando los dias
 	def contador(self):
@@ -19,3 +20,7 @@ class Enfermedad(Comunidad):
 
 	def get_numPasos(self):
 		return str(self.__num_pasos)
+
+	def get_nombre(self):
+
+		return self.nombre

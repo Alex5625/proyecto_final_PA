@@ -3,7 +3,8 @@ from comunidad import Comunidad
 from simulacion import Simulador
 
 covid = Enfermedad(infeccion = 0.3,
-												numero = 10)
+												numero = 10,
+												nombre = "Covid")
 
 talca = Comunidad(cantidad = 10,
 											promedio= 8,
