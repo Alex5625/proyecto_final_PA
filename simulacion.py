@@ -29,6 +29,7 @@ class Simulador:
 				if x.get_estado() == True:
 					x.se_enfermo(test.enfermedad)
 					print(x.print_estado())
+					print(f"La persona tiene estos amigos: {x.get_conexiones()}")
 						
 
 

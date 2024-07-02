@@ -41,3 +41,6 @@ class Persona:
 			print(f"{self.nombre} {self.id} está enfermo con {self.enfermedad.get_nombre()} ")
 		if self.estado == False:
 			print(f"{self.nombre} {self.id} no esta enfermo")
+
+	def get_conexiones(self):
+		return self.conexiones

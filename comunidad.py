@@ -75,7 +75,7 @@ class Comunidad(Persona) :
 
 			persona.conexiones = subconjunto
 
-			return comunidad
+		return comunidad
 
 	def sumar_infectados_inicio(self, num_ciudadanos, num_infectados,arreglo_comunidad):
 		contador = 0
@@ -92,7 +92,7 @@ class Comunidad(Persona) :
 			#La persona se enfermó
 			if contador in casilla_infectada:
 				print(f"{persona.nombre} {persona.id} será infectada")
-				persona.set_taenfermo(True)
+				persona.se_enfermo(self.enfermedad)
 
 			contador += 1
 	
