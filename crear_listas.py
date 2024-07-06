@@ -59,3 +59,5 @@ class NombresApellidos:
         nombre_apellido = random.choice(list(self.combinaciones))
         self.combinaciones.remove(nombre_apellido)
         return nombre_apellido
+
+   

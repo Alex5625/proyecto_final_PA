@@ -95,7 +95,8 @@ class Comunidad(Persona) :
 				persona.se_enfermo(self.enfermedad)
 
 			contador += 1
-	
+
+
 	def return_lista(self):
 		return self.lista
 
@@ -103,4 +104,3 @@ class Comunidad(Persona) :
 		print("La lista contiene:")
 		for persona in self.lista:
 			print(f"Nombre: {persona.nombre}, Apellido: {persona.id}")
-

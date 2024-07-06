@@ -10,7 +10,7 @@ class Persona:
 		self.id_familia = id_familia
 		#si __estado = True esta contagiado, si = False esta libre
 		#-puede ser de tipo Enfermedad
-		self.__enfermedad = None
+		self.enfermedad = None
 		
 		#si __estado = True esta vivo, si = False esta muerto
 		#-si esta inmune o no
