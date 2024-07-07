@@ -8,10 +8,10 @@ class Enfermedad():
 		#Cantidad maxima de de dias 
 		self.__prom_pasos = numero
 
-		#Contara la cantidad de pasos que se estan dando
-		self.__num_pasos = int
-
 		self.nombre = nombre
+
+		#Contara la cantidad de pasos que se estan dando
+		self.__num_pasos = 0
 
 	#Van pasando los dias
 	def contador(self):

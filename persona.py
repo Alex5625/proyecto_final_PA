@@ -44,3 +44,9 @@ class Persona:
 
 	def get_conexiones(self):
 		return self.conexiones
+
+	def get_nombre(self):
+		return self.nombre + self.id
+
+	def get_enfermedad:
+		return self.enfermedad

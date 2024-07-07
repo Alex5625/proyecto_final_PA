@@ -48,10 +48,11 @@ class Comunidad(Persona) :
 			for i in range(cantidad_personas):
 				nombre, apellido = nombre_apellido_manager.obtener_nombre_apellido()
 				persona = Persona(nombre,apellido,id_familia)
+				print(f"Creada {persona.nombre} {persona.id} con estado inicial: {persona.estado}\n")
 				self.lista.append(persona)	
 				id_persona += 1
 
-				print(f"persona n°{id_persona}")
+				# print(f"persona n°{id_persona}")
 
 				if id_persona == self.__largo_comunidad:
 					break
@@ -70,10 +71,14 @@ class Comunidad(Persona) :
 		largo_conexiones = conexion_fisica
 
 		for persona in comunidad:
+			conexiones = set()
+			while len(conexiones) < largo_conexiones:
+				candidato = np.random.choice(comunidad)
+				if candidato != persona:
+					conexiones.add(candidato)
 			#Te genera la lista de internconexiones para una persona en comun
-			subconjunto = np.random.choice(comunidad, size = largo_conexiones)
 
-			persona.conexiones = subconjunto
+			persona.conexiones = list(conexiones)
 
 		return comunidad
 
@@ -85,16 +90,17 @@ class Comunidad(Persona) :
 		#########################################################
 		print(f"las personas n°{casilla_infectada} seran contagiadas inicialmente")
 
-
 		#Recorre el arreglo tipo Personas
 		for persona in arreglo_comunidad:
+			contador += 1
 	
 			#La persona se enfermó
 			if contador in casilla_infectada:
-				print(f"{persona.nombre} {persona.id} será infectada")
+				print(f"{persona.nombre} {persona.id} será infectada\n\n")
 				persona.se_enfermo(self.enfermedad)
+			else: 
+				print(f"{persona.nombre} {persona.id} NO será infectada\n\n")
 
-			contador += 1
 
 
 	def return_lista(self):

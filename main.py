@@ -6,7 +6,7 @@ covid = Enfermedad(infeccion = 0.3,
 												numero = 10,
 												nombre = "Covid")
 
-talca = Comunidad(cantidad = 10,
+talca = Comunidad(cantidad = 100,
 											promedio= 8,
 											probabilidad = 0.8,
 											infectados = 10,
