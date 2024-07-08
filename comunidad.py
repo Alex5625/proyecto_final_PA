@@ -15,7 +15,7 @@ class Comunidad(Persona) :
 		self.__prob_conexion_fisica = 	probabilidad
 		
 		#cantidad inicial de infectados 
-		self.__num_infectados = infectados  
+		self.num_infectados = infectados  
 		self.enfermedad = enfermedad
 		self.comunidad = self.set_comunidad()
 	
@@ -48,7 +48,7 @@ class Comunidad(Persona) :
 			for i in range(cantidad_personas):
 				nombre, apellido = nombre_apellido_manager.obtener_nombre_apellido()
 				persona = Persona(nombre,apellido,id_familia)
-				print(f"Creada {persona.nombre} {persona.id} con estado inicial: {persona.estado}\n")
+				#print(f"Creada {persona.nombre} {persona.id} con estado inicial: {persona.estado}\n")
 				self.lista.append(persona)	
 				id_persona += 1
 
@@ -64,7 +64,7 @@ class Comunidad(Persona) :
 		arreglo_comunidad_conexiones = self.conexiones_interpersonales(self.__prom_conexion_fisica,self.lista)
 
 		#Se integran los ciudadanos inicialmente contagiados a la comunidad 
-		arreglo_comunidad_w_infectados = self.sumar_infectados_inicio(self.__largo_comunidad,self.__num_infectados, self.lista)
+		arreglo_comunidad_w_infectados = self.sumar_infectados_inicio(self.__largo_comunidad,self.num_infectados, self.lista)
 
 	def conexiones_interpersonales(self,conexion_fisica, comunidad):
 
@@ -85,10 +85,10 @@ class Comunidad(Persona) :
 	def sumar_infectados_inicio(self, num_ciudadanos, num_infectados,arreglo_comunidad):
 		contador = 0
 		#########################################################
-		casilla_infectada = random.sample(range(num_ciudadanos), self.__num_infectados)
+		casilla_infectada = random.sample(range(num_ciudadanos), self.num_infectados)
 		casilla_infectada.sort()
 		#########################################################
-		print(f"las personas n°{casilla_infectada} seran contagiadas inicialmente")
+		#print(f"las personas n°{casilla_infectada} seran contagiadas inicialmente")
 
 		#Recorre el arreglo tipo Personas
 		for persona in arreglo_comunidad:
@@ -96,13 +96,14 @@ class Comunidad(Persona) :
 	
 			#La persona se enfermó
 			if contador in casilla_infectada:
-				print(f"{persona.nombre} {persona.id} será infectada\n\n")
+				#print(f"{persona.nombre} {persona.id} será infectada\n\n")
 				persona.se_enfermo(self.enfermedad)
-			else: 
-				print(f"{persona.nombre} {persona.id} NO será infectada\n\n")
+			#else: 
+				#print(f"{persona.nombre} {persona.id} NO será infectada\n\n")
 
 
-
+	def get_enfermedad(self):
+		return enfermedad
 	def return_lista(self):
 		return self.lista
 
