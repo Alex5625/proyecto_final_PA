@@ -6,7 +6,7 @@ covid = Enfermedad(infeccion = 0.1,
 												numero = 10,
 												nombre = "Covid")
 
-talca = Comunidad(cantidad = 400,
+talca = Comunidad(cantidad = 510,
 											promedio= 5,
 											probabilidad = 0.3,
 											infectados = 5,
@@ -17,6 +17,8 @@ sim = Simulador()
 
 sim.set_comunidad(comunidad = talca)
 
-sim.run(pasos = 100)
+sim.run(pasos = 40)
 
 sim.main()
+
+
