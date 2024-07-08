@@ -27,11 +27,11 @@ class Simulador:
 		lista_comunidad = test.return_lista()
 
 		#Almacenamiento de infectados por Dia
-		self.adipd = [test.num_infectados]
+		self.infectados = [test.num_infectados]
 		#Almacenamiento de datos de inmunes por dia
-		self.adnpo = [0]
+		self.inmunes = [0]
 		#Almacenamiento de personas sanas
-		self.ads = [test.get_num_personas()]
+		self.sanos = [test.get_num_personas()]
 
 		#se ven el numero de pasos que va a tener la simulacion
 
@@ -42,7 +42,7 @@ class Simulador:
 			for habitante in lista_comunidad:
 				if habitante.get_inmunidad():
 					contador_inmunes += 1
-			self.adnpo.append(contador_inmunes)
+			self.inmunes.append(contador_inmunes)
 
 			for habitante in lista_comunidad:
 				if habitante.get_estado():
@@ -89,8 +89,8 @@ class Simulador:
 					personas_enfermas += 1
 				else:
 					personas_sanas += 1
-			self.adipd.append(personas_enfermas)
-			self.ads.append(personas_sanas)
+			self.infectados.append(personas_enfermas)
+			self.sanos.append(personas_sanas)
 
 			#Se recorre a la gente, y si esta enferma se activa el contador para que aumente
 			#La cantidad de pasos (dias) para que en un punto ya se recupere
@@ -100,7 +100,7 @@ class Simulador:
 					habitante.pasa_el_dia()
 					print(f"La persona {habitante.get_nombre()} lleva {habitante.pasos} dias enfermo")
 
-			print(f"enfermos por dia {self.adipd}")
+			print(f"enfermos por dia {self.infectados}")
 
 
 			#Esto imprime la cantidad de personas que tenga la comunidad
@@ -112,13 +112,13 @@ class Simulador:
 
 		# #Grafico~~~~~~~~~
 
-		# longitud_x = len(self.adipd)
+		# longitud_x = len(self.infectados)
 		# arreglo_eje_x = list(range(1,longitud_x + 1))
 
 		# #ejes X e Y
-		# plt.plot(arreglo_eje_x, self.adipd)
-		# plt.plot(arreglo_eje_x, self.adnpo)
-		# plt.plot(arreglo_eje_x, self.ads)
+		# plt.plot(arreglo_eje_x, self.infectados)
+		# plt.plot(arreglo_eje_x, self.inmunes)
+		# plt.plot(arreglo_eje_x, self.sanos)
 		# #Titulo del grafico
 		# plt.title("Grafica de contagiados/inmunes")
 
@@ -137,7 +137,7 @@ class Simulador:
 	    app = Gtk.Application()
 	    
 	    def on_activate(app):
-	        win = MatplotlibGTKWindow(self.adipd, self.adnpo, self.ads)
+	        win = MatplotlibGTKWindow(self.infectados, self.inmunes, self.sanos)
 	        win.set_application(app)
 	        win.show()
 	    

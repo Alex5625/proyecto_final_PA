@@ -17,7 +17,7 @@ sim = Simulador()
 
 sim.set_comunidad(comunidad = talca)
 
-sim.run(pasos = 40)
+sim.run(pasos = 50)
 
 sim.main()
 
