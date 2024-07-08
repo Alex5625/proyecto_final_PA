@@ -9,7 +9,7 @@ class Comunidad(Persona) :
 	def __init__(self,cantidad,promedio,probabilidad,infectados,enfermedad):
 
 		#cantidad maxima de habitantes o personas dentro de la comunidad
-		self.__largo_comunidad = cantidad
+		self.largo_comunidad = cantidad
 
 		self.__prom_conexion_fisica =  promedio
 		self.__prob_conexion_fisica = 	probabilidad
@@ -42,7 +42,7 @@ class Comunidad(Persona) :
 		#repartija aleatoria en un grupo de datos (numpy tiene algo con combinatoria) 
 		#asi como podemos tener familias podemos tener amigos
 
-		while id_persona != self.__largo_comunidad:
+		while id_persona != self.largo_comunidad:
 
 			cantidad_personas = self.numero_integrantes(media,desviacion_estandar)
 			for i in range(cantidad_personas):
@@ -54,7 +54,7 @@ class Comunidad(Persona) :
 
 				# print(f"persona n°{id_persona}")
 
-				if id_persona == self.__largo_comunidad:
+				if id_persona == self.largo_comunidad:
 					break
 
 			id_familia += 1
@@ -64,7 +64,7 @@ class Comunidad(Persona) :
 		arreglo_comunidad_conexiones = self.conexiones_interpersonales(self.__prom_conexion_fisica,self.lista)
 
 		#Se integran los ciudadanos inicialmente contagiados a la comunidad 
-		arreglo_comunidad_w_infectados = self.sumar_infectados_inicio(self.__largo_comunidad,self.num_infectados, self.lista)
+		arreglo_comunidad_w_infectados = self.sumar_infectados_inicio(self.largo_comunidad,self.num_infectados, self.lista)
 
 	def conexiones_interpersonales(self,conexion_fisica, comunidad):
 
@@ -101,7 +101,8 @@ class Comunidad(Persona) :
 			#else: 
 				#print(f"{persona.nombre} {persona.id} NO será infectada\n\n")
 
-
+	def get_num_personas(self):
+		return self.largo_comunidad
 	def get_enfermedad(self):
 		return enfermedad
 	def return_lista(self):
