@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_gtk4agg import FigureCanvasGTK4Agg as FigureCanvas
 import pandas as pd
 
-def on_quit_action(self, _action):
+def on_quit_action(self):
     quit()
 
 
@@ -27,39 +27,23 @@ class MatplotlibGTKWindow(Gtk.Window):
         self.set_titlebar(titlebar = header_bar)
         self.set_title("Grafica de infecciones/inmunes/sanos")
 
-        menu = Gio.Menu.new()
-
-        self.popover = Gtk.PopoverMenu()
-        self.popover.set_menu_model(menu)
-
-        self.menu_popover = Gtk.MenuButton()
-        self.menu_popover.set_popover(self.popover)
-        self.menu_popover.set_icon_name("open-menu-symbolic")
-
-        header_bar.pack_end(self.menu_popover)
-
-
-        # Create action group
-        action_group = Gio.SimpleActionGroup.new()
-        self.insert_action_group("win", action_group)
-
-        # Add an about dialog
-        about_menu = Gio.SimpleAction.new("about", None)
-        about_menu.connect("activate", self.show_about_dialog)
-        action_group.add_action(about_menu)
-        menu.append("Acerca de", "win.about")
-
-        action = Gio.SimpleAction.new("quit", None)
-        action.connect("activate", on_quit_action)
-        action_group.add_action(action)
-        menu.append("Salir", "win.quit") 
-
-        #Boton para el header bar
+        #Botones para el header bar
         self.boton_guardar = Gtk.Button()
         self.boton_guardar.set_label("Guardar catastro")
         self.boton_guardar.connect("clicked", self.on_clicked_guardar_archivo)
         header_bar.pack_start(self.boton_guardar)
 
+
+
+        self.boton_salir = Gtk.Button()
+        self.boton_salir.set_label("Salir")
+        self.boton_salir.connect("clicked", on_quit_action)
+        header_bar.pack_end(self.boton_salir)
+
+        self.boton_info = Gtk.Button()
+        self.boton_info.set_label("Acerca De")
+        self.boton_info.connect("clicked", self.show_about_dialog)
+        header_bar.pack_end(self.boton_info)
 
         # Crear una figura de Matplotlib
         self.fig, self.ax = plt.subplots()
@@ -88,22 +72,8 @@ class MatplotlibGTKWindow(Gtk.Window):
                 writer.writerow([dia,sano,infectado,inmune])
 
 
-
-        # print(f"\n\n El largo del arreglo dias es: {len(dias)}\nEl largo del arreglo sanos es: {len(sanos)}\nEl largo del arreglo infectados es:{len(infectados)}\nEl largo del areglo inmunes es: {len(inmunes)}")
-        #Se crea el dataframe, pandas trabaja con dataframe
-        # data = {
-        #         "Dias": dias, 
-        #         "Personas Sanas": sanos,
-        #         "Personas Infectadas": infectados,
-        #         "Personas Inmunes": inmunes
-        # }
-        # df = pd.DataFrame(data)
-
-        # #Guarda el archivo en un archivo csv
-        # df.to_csv(nombre_archivo, index = False)
-
-
-    def show_about_dialog(self, action, param):
+    
+    def show_about_dialog(self, action):
         self.about = Gtk.AboutDialog()
         self.about.set_transient_for(self)
         self.about.set_modal(self)
