@@ -33,7 +33,10 @@ class MatplotlibGTKWindow(Gtk.Window):
         self.boton_guardar.connect("clicked", self.on_clicked_guardar_archivo)
         header_bar.pack_start(self.boton_guardar)
 
-
+        self.boton_leer = Gtk.Button()
+        self.boton_leer.set_label("Leer archivo")
+        self.boton_leer.connect("clicked", self.on_clicked_leer_archivo)
+        header_bar.pack_start(self.boton_leer)
 
         self.boton_salir = Gtk.Button()
         self.boton_salir.set_label("Salir")
@@ -72,7 +75,43 @@ class MatplotlibGTKWindow(Gtk.Window):
                 writer.writerow([dia,sano,infectado,inmune])
 
 
-    
+    def on_clicked_leer_archivo(self, button):
+        # Leer el archivo CSV y mostrarlo en una nueva ventana
+        self.df = pd.read_csv("Datos_infectados.csv")
+        self.show_csv_window()
+
+    def show_csv_window(self):
+        window = Gtk.Window()
+        window.set_title("CSV Viewer")
+        window.set_default_size(800, 600)
+
+        # Crear un ScrolledWindow
+        scrolled_window = Gtk.ScrolledWindow()
+        window.set_child(scrolled_window)
+
+        # Crear un ListStore y TreeView
+        liststore = Gtk.ListStore(*[str] * len(self.df.columns))
+        treeview = Gtk.TreeView(model=liststore)
+
+        # Habilitar las líneas de cuadrícula
+        treeview.set_grid_lines(Gtk.TreeViewGridLines.BOTH)
+        
+        # Añadir encabezados y columnas al TreeView
+        for i, column in enumerate(self.df.columns):
+            renderer = Gtk.CellRendererText()
+            tvcolumn = Gtk.TreeViewColumn(column, renderer, text=i)
+            treeview.append_column(tvcolumn)
+
+        # Añadir filas al ListStore
+        for row in self.df.itertuples(index=False, name=None):
+            liststore.append([str(value) for value in row])
+
+        # Añadir el TreeView al ScrolledWindow
+        scrolled_window.set_child(treeview)
+
+        # Mostrar la ventana
+        window.show()
+
     def show_about_dialog(self, action):
         self.about = Gtk.AboutDialog()
         self.about.set_transient_for(self)
