@@ -19,8 +19,8 @@ class Simulador:
 	def __init__(self):
 		self.__comunidad = None
 
-
 	def run(self, pasos):
+		
 
 		test = self.get_comunidad()
 
@@ -54,18 +54,6 @@ class Simulador:
 
 			for habitante in lista_comunidad:
 				conexiones_habitante = habitante.get_conexiones()
-				#Acordarse de que el atributo estado de la persona sera 0,1,2 !!!!
-				#Si el ciudadano esta contagiado
-				#print(f"EL habitante ~~{habitante.get_nombre()} ~~ esta contagiado? {habitante.get_estado()}")
-			
-				"""Aqui posteriormente puedes hacer esto:
-
-				if habitante.get_estado() == 0:
-					print("Es susceptible, entra a la probabilidad de infeccion")
-				if habitante.get_estado() == 1 or habitante.get_estado() == 2:
-					print("Esta infectado o ya se recupero, asiq dejemoslo pasar, ya no pueden contagiarse")
-				"""
-			
 
 				if not habitante.get_inmunidad() and habitante.get_estado():
 					self.enfermedad = habitante.get_enfermedad()
@@ -102,28 +90,6 @@ class Simulador:
 
 			print(f"enfermos por dia {self.infectados}")
 
-
-			#Esto imprime la cantidad de personas que tenga la comunidad
-			# for x in lista_comunidad:
-			# 	if x.get_estado():
-			# 		x.se_enfermo(test.enfermedad)
-			# 		print(x.print_estado())
-			# 		print(f"La persona tiene estos amigos: {x.get_conexiones()}")
-
-		# #Grafico~~~~~~~~~
-
-		# longitud_x = len(self.infectados)
-		# arreglo_eje_x = list(range(1,longitud_x + 1))
-
-		# #ejes X e Y
-		# plt.plot(arreglo_eje_x, self.infectados)
-		# plt.plot(arreglo_eje_x, self.inmunes)
-		# plt.plot(arreglo_eje_x, self.sanos)
-		# #Titulo del grafico
-		# plt.title("Grafica de contagiados/inmunes")
-
-		# #Muestra el grafico
-		# plt.show()
 
 	#Se setea la comunidad
 	def set_comunidad(self,comunidad):

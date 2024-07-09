@@ -22,6 +22,7 @@ class MatplotlibGTKWindow(Gtk.Window):
         super().__init__()
 
         self.set_default_size(800, 600)
+
         #Crear HeaderBar        
         header_bar = Gtk.HeaderBar.new()
         self.set_titlebar(titlebar = header_bar)
@@ -29,7 +30,7 @@ class MatplotlibGTKWindow(Gtk.Window):
 
         #Botones para el header bar
         self.boton_guardar = Gtk.Button()
-        self.boton_guardar.set_label("Guardar catastro")
+        self.boton_guardar.set_label("Guardar simulador")
         self.boton_guardar.connect("clicked", self.on_clicked_guardar_archivo)
         header_bar.pack_start(self.boton_guardar)
 
@@ -60,6 +61,7 @@ class MatplotlibGTKWindow(Gtk.Window):
 
     def on_clicked_guardar_archivo(self, button):
         dias = list(range(0, len(self.infectados)))
+        #Generar csv al tener las 3 listas importantes puede crear un informe de lo ocurrido dentro de la simulacion
         self.generar_csv(dias, self.sanos, self.infectados, self.inmunes)
 
         # ------crear mensaje de dialogo ---------
@@ -87,8 +89,11 @@ class MatplotlibGTKWindow(Gtk.Window):
 
 
     def on_clicked_leer_archivo(self, button):
-        # Leer el archivo CSV y mostrarlo en una nueva ventana
+        
+        #Usando la api de pandas se crea un dataframe que luego sera usado en la grilla de ListStore 
         self.df = pd.read_csv("Datos_infectados.csv")
+
+        # Leer el archivo CSV y mostrarlo en una nueva ventana
         self.show_csv_window()
 
     def show_csv_window(self):

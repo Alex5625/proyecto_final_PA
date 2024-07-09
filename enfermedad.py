@@ -8,6 +8,7 @@ class Enfermedad():
 		#Cantidad maxima de de dias 
 		self.prom_pasos = numero
 
+		#Nombre de la Enfermedad
 		self.nombre = nombre
 
 		#Contara la cantidad de pasos que se estan dando
