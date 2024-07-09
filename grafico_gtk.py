@@ -62,6 +62,17 @@ class MatplotlibGTKWindow(Gtk.Window):
         dias = list(range(0, len(self.infectados)))
         self.generar_csv(dias, self.sanos, self.infectados, self.inmunes)
 
+        # ------crear mensaje de dialogo ---------
+        dialog = Gtk.MessageDialog(title="Ventana de Guardado",
+                                   transient_for=self,
+                                   modal=True,
+                                   default_width=300,
+                                   default_height=50)
+
+        # ----- añade texto debajo de titulo
+        dialog.set_property("secondary-text","Se ha guardado el archivo correctamente")
+        dialog.set_deletable(True)
+        dialog.set_visible(True)
 
     def  generar_csv(self,dias, sanos, infectados, inmunes):
 
